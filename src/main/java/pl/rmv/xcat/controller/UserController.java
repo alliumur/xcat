@@ -7,8 +7,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pl.rmv.xcat.model.User;
-import pl.rmv.xcat.service.SecurityService;
 import pl.rmv.xcat.service.UserService;
 import pl.rmv.xcat.validator.UserValidator;
 
@@ -16,9 +16,6 @@ import pl.rmv.xcat.validator.UserValidator;
 public class UserController {
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private SecurityService securityService;
 
     @Autowired
     private UserValidator userValidator;
@@ -31,21 +28,20 @@ public class UserController {
     }
 
     @PostMapping("/registration")
-    public String registration(@ModelAttribute("userForm") User userForm, BindingResult result){
+    public String registration(@ModelAttribute("userForm") User userForm, BindingResult result, RedirectAttributes redirectAttributes){
         userValidator.validate(userForm, result);
-
         if(result.hasErrors()) return "registration";
 
         userService.save(userForm);
-        securityService.autologin(userForm.getUsername(), userForm.getPassword());
-        return "redirect:/welcome";
+        redirectAttributes.addFlashAttribute("message", "Registration successful!");
+        return "redirect:/login";
     }
 
     @GetMapping("/login")
-    public String login(Model model, String error, String logout){
-        if(error != null)  model.addAttribute("error", "Your username and password is invalid.");
-        if(logout != null) model.addAttribute("message", "You have been logged out successfully.");
-
+    public String login(Model model, String error){
+        if(error != null) {
+            model.addAttribute("error", "Username or password is invalid.");
+        }
         return "login";
     }
 
