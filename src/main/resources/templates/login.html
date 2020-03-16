@@ -3,20 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+    <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
 
     <title>xcat</title>
 </head>
 <body >
     <div class="container">
         <div class="row">
-            <div class="col-6 col-md-4"></div>
-            <div class="col-6 col-md-4">
+            <div class="col"></div>
+            <div class="col">
                 <br/>
                 <br/>
                 <br/>
@@ -24,21 +22,19 @@
                 <br/>
                 <br/>
                 <div class="card">
-                    <div class="card-header text-center">
-                        <strong>Sing in to xCat</strong>
-                    </div>
+                    <div class="card-header text-center h5">Sing in to xCat</div>
                     <div class="card-body">
                         <form th:action="@{/login}" method="post">
                             <div class="form-group alert alert-success" th:if="${#request.getAttribute('message')!=null}">
                                 <span th:text="${#request.getAttribute('message')}"></span>
                             </div>
                             <div class="form-group">
-                                <label for="username"><strong>Username</strong></label>
-                                <input id="username" type="text" name="username" class="form-control" />
+                                <label for="username" class="bmd-label-floating">Username</label>
+                                <input type="text" class="form-control" id="username" name="username">
                             </div>
                             <div class="form-group">
-                                <label for="password" class="control-label"><strong>Password</strong></label>
-                                <input id="password"  type="password" name="password" class="form-control" />
+                                <label for="password" class="bmd-label-floating">Password</label>
+                                <input type="password" class="form-control" id="password" name="password">
                             </div>
                             <div class="form-group text-right">
                                 <span><a href="/" th:href="@{/login}">Forgot password?</a></span>
@@ -56,8 +52,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6 col-md-4"></div>
+            <div class="col"></div>
         </div>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/popper.js@1.12.6/dist/umd/popper.js" integrity="sha384-fA23ZRQ3G/J53mElWqVJEGJzU0sTs+SvzG8fXVWP+kJQ1lwFAOkcUOysnlKJC33U" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/bootstrap-material-design@4.1.1/dist/js/bootstrap-material-design.js" integrity="sha384-CauSuKpEqAFajSpkdjv3z9t8E7RlpJ1UP0lKM/+NdtSarroVKu069AlsRPKkFBz9" crossorigin="anonymous"></script>
+    <script>$(document).ready(function() { $('body').bootstrapMaterialDesign(); });</script>
 </body>
 </html>
