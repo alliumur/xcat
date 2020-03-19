@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
 
     <title>xcat</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.css" th:href="@{/css/style.css}"/>
 </head>
 <body >
     <div class="container">
@@ -22,7 +23,7 @@
                 <br/>
                 <br/>
                 <div class="card">
-                    <div class="card-header text-center h5">Registration</div>
+                    <div class="card-header text-center h5">x<span id="logo">C</span>at<br/><span style="font-size:87%">Registration</span></div>
                     <div class="card-body">
                         <form th:action="@{/registration}" th:object="${userForm}" method="post">
                             <div class="form-group" th:classappend="${#fields.hasErrors('username')}? 'has-error':''">

@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'CatFont';
+    src: url('/fonts/cat.ttf') format('truetype'),
+         url('/fonts/cat.woff') format('woff');
+}
+
+#logo {
+    font-family: 'CatFont', Fallback, sans-serif;
+    font-size: 350%;
+}
+
+.noselect {
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+    -khtml-user-select: none; /* Konqueror HTML */
+    -moz-user-select: none; /* Old versions of Firefox */
+    -ms-user-select: none; /* Internet Explorer/Edge */
+    user-select: none; /* Non-prefixed version, currently */
+}
+
+.btn:hover {
+    outline: 0 !important ;
+}

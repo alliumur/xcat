@@ -1,6 +1,9 @@
 package pl.rmv.xcat.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,6 +25,10 @@ public class UserController {
 
     @GetMapping("/registration")
     public String registration(Model model){
+        if (isAuthenticated()) {
+            return "redirect:/welcome";
+        }
+
         model.addAttribute("userForm", new User());
 
         return "registration";
@@ -37,8 +44,18 @@ public class UserController {
         return "redirect:/login";
     }
 
+    public boolean isAuthenticated(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication != null && !(authentication instanceof AnonymousAuthenticationToken) && authentication.isAuthenticated();
+
+    }
+
     @GetMapping("/login")
     public String login(Model model, String error){
+        if (isAuthenticated()) {
+            return "redirect:/welcome";
+        }
+
         if(error != null) {
             model.addAttribute("error", "Username or password is invalid.");
         }
